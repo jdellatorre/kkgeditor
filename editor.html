@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="./styles.css" />
+	<script src="./jquery-1.10.2.js"></script>
+	<script src="./svgDraw.js" ></script>
+<style>
+#container { margin:50px; background-color: #ffffff; }
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+	console.log('load');
+	
+	//$("#logicalOperator").attr(""
+	/*
+	var SVGline = function (l) {
+		this.l = l;
+	}
+
+	function drawLine() {
+		var line = new SVGline(0);
+		line = line.createline(10, 50, 100, 200, 'rgb(0,99,56)', 10);
+		
+		var aSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+		aSvg.setAttribute('width', 1000);
+		aSvg.setAttribute('height', 500);
+		var w = document.getElementById('container');
+
+		aSvg.appendChild(line);
+		w.appendChild(aSvg);
+	}
+	
+	SVGline.prototype.createline = function (x1, y1, x2, y2, color, w) {
+		var aLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+		aLine.setAttribute('x1', x1);
+		aLine.setAttribute('y1', y1);
+		aLine.setAttribute('x2', x2);
+		aLine.setAttribute('y2', y2);
+		aLine.setAttribute('stroke', color);
+		aLine.setAttribute('stroke-width', w);
+		return aLine;
+	}
+	
+	drawLine();
+	
+var Line = {};
+
+Line.LINES = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+
+var SVGline = function (l) {
+    this.l = l;
+}
+
+for (var i = Line.LINES.length; i > -1; i -= 1) {
+    Line[Line.LINES[i]] = new SVGline(Line.LINES[i]);
+}
+
+SVGline.prototype.createline = function (x1, y1, x2, y2, color, w) {
+    var aLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    aLine.setAttribute('x1', x1);
+    aLine.setAttribute('y1', y1);
+    aLine.setAttribute('x2', x2);
+    aLine.setAttribute('y2', y2);
+    aLine.setAttribute('stroke', color);
+    aLine.setAttribute('stroke-width', w);
+    return aLine;
+}
+
+function start() {
+console.log('start');
+    var aSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    aSvg.setAttribute('width', 1000);
+    aSvg.setAttribute('height', 500);
+    var w = document.getElementById('container');
+
+    for (var i = 1; i < 11; i += 1) {
+        var x1 = Math.floor(Math.random() * 500 / 2);
+        var xx = Line[i].createline(x1, 0, 200, 300, 'rgb(0,0,' + x1 + ')', i);
+        aSvg.appendChild(xx);
+    }
+    w.appendChild(aSvg);
+}
+
+start();
+*/
+});
+</script>
+</head>
+<body>
+	<div id="svgContainer" style="margin: 50px 50px;">
+		<svg id="svg1" width="0" height="0" >
+			<path
+				id="path1"
+				d="M0 0"         
+				stroke="#000" 
+				fill="none" 
+				stroke-width="12px";/>
+			<path
+				id="path2"
+				d="M0 0"         
+				stroke="#000" 
+				fill="none" 
+				stroke-width="12px";/>
+		</svg>
+	</div> 
+	<div id= "outer">
+	  <!--<div id="teal"></div>-->
+	  <div id="orange" class="orange"></div>
+	  <div>
+	  <select id="op" class="op-offset"><option>one</option></select>
+	  </div>
+	  <div id="orange2" class="orange" ></div>
+	</div>
+
+	<!--
+<div id="container"></div>
+<svg height="210" width="500">
+  <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" ></line>
+  Sorry, your browser does not support inline SVG.
+</svg>-->
+</body>
+</html>

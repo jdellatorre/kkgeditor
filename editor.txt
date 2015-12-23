@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Case</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body> 
+
+<style>
+.foo {
+    border-radius: 10px;
+
+border: 2px solid #73AD21;
+padding: 10px;
+}
+.forum_hover {
+    border-radius: 10px;
+border: 2px solid #ff00ff;
+padding: 10px;
+
+}
+</style>
+
+
+<script>
+$(document).ready(function() {
+$('.foo').hover(function(){ $(this).toggleClass('forum_hover');});
+});
+</script>
+<div class="container">
+<div class="footer">
+  <p class="panel foo">my other container</p>
+</div>
+</div>
+
+<div class="container">
+  <h2>Well Size</h2>
+  <div class="well foo img-rounded">Small Well</div>
+  <div class="well">Normal Well</div>
+  <div class="well well-lg">Large Well</div>
+</div>
+
+</body>
+</html>
