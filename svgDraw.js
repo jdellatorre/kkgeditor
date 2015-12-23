@@ -35,6 +35,7 @@ function drawPath(svg, path, startX, startY, endX, endY) {
                     " H" + (endX - delta*signum(deltaX)) + 
                     " A" + delta + " " +  delta + " 0 0 " + arc2 + " " + endX + " " + (startY + 3*delta) +
                     " V" + endY );
+					
 	path.attr("x1", startX);
 	path.attr("y1", startY);
 	path.attr("x2", endX);
@@ -72,7 +73,8 @@ function connectElements(svg, path, startElem, endElem) {
     drawPath(svg, path, startX, startY, endX, endY);
 	console.log("draw");
 	
-	$("#op").css({left:startX,top:startY});
+	
+	$("#op").css({left:startX + svgLeft,top:startY + svgTop});
 }
 
 
@@ -80,7 +82,7 @@ function connectElements(svg, path, startElem, endElem) {
 function connectAll() {
     // connect all the paths you want!
     //connectElements($("#svg1"), $("#path1"), $("#teal"), $("#orange"));
-	connectElements($("#svg1"), $("#path2"), $("#orange"), $("#orange2"));
+	connectElements($("#svg1"), $("#path2"), $("#condition1"), $("#condition2"));
 	
 	console.log($("#path2"));
 	/*

@@ -6,11 +6,9 @@ body{ background-color: white; }
 	opacity: 0.5;
 }
 
-
-
 .op-offset {
-position: absolute;
- z-index: 10;
+	position: absolute;
+	z-index: 10;
 }
 
 #outer{
@@ -26,12 +24,7 @@ position: absolute;
 }
 
 .orange {
-	height: 4em;
 	width: 35%;
-	padding: 2em 8em;
-	margin-left: 0;
-	margin-top: 6em;
-	background-color: blue; 
 }
 
 #red{
