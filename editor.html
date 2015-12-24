@@ -2,6 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="./styles.css" />
+	<link rel="stylesheet" href="./css/font-awesome.min.css" />
 	<script src="./jquery-1.11.3.min.js"></script>
 	<script src="./bootstrap.min.js"></script>
 	<script src="./svgDraw.js" ></script>
@@ -12,26 +13,23 @@
 	margin-bottom: 50px;
 }
 
-.condition:last-child {
-	
-}
-
 .condition {
     border-radius: 10px;
-	border: 2px solid #73AD21;
+	border: 2px solid #bdbdbd;
 	padding: 10px;
 }
 
 .group {
     border-radius: 10px;
-	border: 2px solid #00ff00;
+	border: 2px solid #bdbdbd;
 	padding: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 50px;
+	width: 500px;
 }
 
 .forum_hover {
     border-radius: 10px;
-	border: 2px solid #ff00ff;
+	border: 2px solid #01DF01;
 	padding: 10px;
 }
 
@@ -43,13 +41,18 @@ p {
 <script type="text/javascript">
 $(document).ready(function() {
 	console.log('load');
-	$('.condition').hover(function(){ $(this).toggleClass('forum_hover');});
-	//$("#logicalOperator").attr(""
-	
+	$('.condition').hover(function(){ 
+		$(this).toggleClass('forum_hover');
+		$(this).parent().toggleClass('forum_hover');
+	});
+	$('.group').hover(function(){ 
+		$(this).toggleClass('forum_hover');
+	});
 });
 </script>
 </head>
 <body>
+	
 	<div id="svgContainer" style="margin: 50px 50px;">
 		<svg id="svg1" width="0" height="0" >
 			<path
@@ -67,29 +70,43 @@ $(document).ready(function() {
 		</svg>
 	</div> 
 	<div id="outer">
-		<div class="group">
-			<div class="condition">
-				<p class="panel">my other container</p>
+		<div>
+			<h2>Query Editor</h2>
+		</div>
+	
+		<div id="group1" class="group">
+			<div id="group1Condition1" class="condition panel">
+				<p class="panel">
+					<label>Field: </label> <select><option>Field1</option><option>Field2</option></select>
+					<select><option>contains</option><option>beginsWith</option></select>
+					<input type="text" id="group1condition1Value">
+					<i class="fa fa-trash button-delete-condition"></i>
+				</p>
 			</div>
 		</div>
-		
-		<div class="group">
-			<div id="condition1" class="condition orange panel">
+		<div id="group1op" class="op-offset">
+			<select><option>AND</option><option>OR</option></select>
+		</div>
+		<div id="group2" class="group">
+			<div id="group2condition1" class="condition panel">
 				<p>my other container1<br/>2nd row</p>
 			</div>
-			<div id="op" class="op-offset">
-				<select><option>one</option></select>
+			<div id="group2condition1op" class="op-offset">
+				<select><option>AND</option><option>OR</option></select>
 			</div>
-			<div id="condition2" class="condition orange panel">
+			<div id="group2condition2" class="condition panel">
 				<p>my other container2</p>
 			</div>
 		</div>
+		<div>
+			test
+		</div>
 		
-		<div class="group">
-			<div class="condition">
+		<!--<div id="group3" class="group sm">
+			<div id="group3condition1" class="condition panel">
 				<p class="panel">my other container</p>
 			</div>
-		</div>
+		</div>-->
 	</div>
 </div>
 

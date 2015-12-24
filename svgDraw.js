@@ -73,16 +73,18 @@ function connectElements(svg, path, startElem, endElem) {
     drawPath(svg, path, startX, startY, endX, endY);
 	console.log("draw");
 	
+	var leftOffsetOperator = 20;
+	var topOffsetOperator = 15;
 	
-	$("#op").css({left:startX + svgLeft,top:startY + svgTop});
+	startElem.next().css({left:startX + svgLeft - leftOffsetOperator,top:startY + svgTop + topOffsetOperator});
 }
 
 
 
 function connectAll() {
     // connect all the paths you want!
-    //connectElements($("#svg1"), $("#path1"), $("#teal"), $("#orange"));
-	connectElements($("#svg1"), $("#path2"), $("#condition1"), $("#condition2"));
+    connectElements($("#svg1"), $("#path1"), $("#group1"), $("#group2"));
+	connectElements($("#svg1"), $("#path2"), $("#group2condition1"), $("#group2condition2"));
 	
 	console.log($("#path2"));
 	/*

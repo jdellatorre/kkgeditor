@@ -11,6 +11,10 @@ body{ background-color: white; }
 	z-index: 10;
 }
 
+.button-delete-condition {
+	float: right;
+}
+
 #outer{
 	margin:0 auto;
 	width: 80%;
@@ -21,10 +25,6 @@ body{ background-color: white; }
  	height: 6em;
  	background-color:teal;
  	margin-left: 10%;
-}
-
-.orange {
-	width: 35%;
 }
 
 #red{
