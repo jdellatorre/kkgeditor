@@ -1,57 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="./styles.css" />
-	<link rel="stylesheet" href="./css/font-awesome.min.css" />
-	<link rel="stylesheet" href="./css/bootstrap.min.css" />
 	<script src="./jquery-1.11.3.min.js"></script>
 	<script src="./bootstrap.min.js"></script>
 	<script src="./svgDraw.js" ></script>
-<style>
-#container { margin:50px; background-color: #ffffff; }
-
-.condition:not(:last-child) {
-	margin-bottom: 50px;
-}
-
-.condition {
-    border-radius: 10px;
-	border: 2px solid #bdbdbd;
-	padding: 10px;
-}
-
-.group {
-    border-radius: 10px;
-	border: 2px solid #bdbdbd;
-	padding: 10px;
-	margin-bottom: 50px;
-	width: 500px;
-}
-
-.forum_hover {
-    border-radius: 10px;
-	border: 2px solid #01DF01;
-	padding: 10px;
-}
-
-p {
-	margin: 0;
-}
-
-</style>
-<script type="text/javascript">
-$(document).ready(function() {
-	console.log('load');
-	$('.condition').hover(function(){ 
-		$(this).toggleClass('forum_hover');
-		$(this).parent().toggleClass('forum_hover');
-	});
-	$('.group').hover(function(){ 
-		$(this).toggleClass('forum_hover');
-	});
+	<link rel="stylesheet" href="./css/font-awesome.min.css" />
+	<link rel="stylesheet" href="./css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="./styles.css" />
 	
-});
-</script>
+	<style>
+	.condition-hover {
+		border-radius: 10px;
+		border: 2px solid #01DF01;
+		padding: 10px;
+	}
+	
+	.plus-sign-hover {
+		border-radius: 5px;
+		border: 2px solid #01DF01;
+		padding: 5px;
+	}
+	</style>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		console.log('load');
+		$('.condition').hover(function(){ 
+			$(this).toggleClass('condition-hover');
+			$(this).parent().toggleClass('condition-hover');
+		});
+		$('.group').hover(function(){ 
+			$(this).toggleClass('condition-hover');
+		});
+		$('.group .plus-sign').hover(function(){ 
+			$(this).toggleClass('plus-sign-hover');
+			$(this).parent().parent().toggleClass('condition-hover');
+		})
+		
+		$('.group-plus .plus-sign').hover(function(){ 
+			$(this).toggleClass('plus-sign-hover');
+		})
+	});
+	</script>
 </head>
 <body>
 	
@@ -76,6 +65,7 @@ $(document).ready(function() {
 			<h2>Query Editor</h2>
 		</div>
 	
+		
 		<div id="group1" class="group">
 			<table class="table header-group">
 				<tr>
@@ -91,7 +81,7 @@ $(document).ready(function() {
 					</td>
 				</tr>
 			</table>
-			<div id="group1Condition1" class="condition">
+			<div id="group1Condition1" class="condition panel last">
 				<table class="table body-group">
 					<tr>
 						<td>
@@ -115,11 +105,11 @@ $(document).ready(function() {
 		<div id="group1op" class="op-offset">
 			<select><option>AND</option><option>OR</option></select>
 		</div>
-		<div id="group2" class="group">
+		<div id="group2" class="group last">
 			<table class="table header-group">
 				<tr>
 					<td>
-						<input type="text" class="form-control" value="Group title"></input>
+						<label>Group title 2</label>
 					</td>
 					<td>
 						<div class="condition-buttons">
@@ -136,12 +126,17 @@ $(document).ready(function() {
 			<div id="group2condition1op" class="op-offset">
 				<select><option>AND</option><option>OR</option></select>
 			</div>
-			<div id="group2condition2" class="condition panel">
+			<div id="group2condition2" class="condition panel last">
 				<p>my other container2</p>
 			</div>
+			<div class="text-center">
+				<i class="fa fa-plus plus-sign"></i>	
+			</div>
 		</div>
-		<div>
-			test3
+		<div class="group-plus">
+			<div class="text-center">
+				<i class="fa fa-plus plus-sign"></i>	
+			</div>
 		</div>
 		
 		<!--<div id="group3" class="group sm">

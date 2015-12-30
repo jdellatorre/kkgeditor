@@ -1,9 +1,33 @@
 body{ background-color: white; }
 
+p {
+	margin: 0;
+}
+
+#container { margin:50px; background-color: #ffffff; }
+
 #svgContainer { 
 	z-index: -10;
 	position:absolute;
 	opacity: 0.5;
+}
+
+.group {
+	border-radius: 10px;
+	border: 2px solid #bdbdbd;
+	padding: 10px;
+	margin-bottom: 50px;
+	width: 500px;
+}
+
+.group.last {
+	margin-bottom: 0;
+}
+
+.forum_hover {
+    border-radius: 10px;
+	border: 2px solid #01DF01;
+	padding: 10px;
 }
 
 .op-offset {
@@ -19,6 +43,10 @@ body{ background-color: white; }
 	margin-bottom: 10px !important;
 }
 
+.body-group  td {
+	padding-right: 10px !important;
+}
+
 .body-group {
 	margin-bottom: 0 !important;
 }
@@ -28,6 +56,29 @@ body{ background-color: white; }
 	padding-left: 10px;
 }
 
+.condition {
+	margin-bottom: 50px;
+    border-radius: 10px;
+	border: 2px solid #bdbdbd;
+	padding: 10px;
+}
+
+.condition.last {
+	margin-bottom: 0;
+}
+
+.group-plus {
+	margin-top: 5px;
+	border-radius: 10px;
+	width: 500px;
+}
+
+.plus-sign {
+	padding: 5px;
+	border: 2px solid #bdbdbd;
+	border-radius: 5px;
+	margin: 5px 0 0 0;
+}
 
 #outer{
 	margin:0 auto;
