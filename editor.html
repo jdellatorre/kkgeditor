@@ -3,6 +3,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="./styles.css" />
 	<link rel="stylesheet" href="./css/font-awesome.min.css" />
+	<link rel="stylesheet" href="./css/bootstrap.min.css" />
 	<script src="./jquery-1.11.3.min.js"></script>
 	<script src="./bootstrap.min.js"></script>
 	<script src="./svgDraw.js" ></script>
@@ -48,6 +49,7 @@ $(document).ready(function() {
 	$('.group').hover(function(){ 
 		$(this).toggleClass('forum_hover');
 	});
+	
 });
 </script>
 </head>
@@ -75,19 +77,59 @@ $(document).ready(function() {
 		</div>
 	
 		<div id="group1" class="group">
-			<div id="group1Condition1" class="condition panel">
-				<p class="panel">
-					<label>Field: </label> <select><option>Field1</option><option>Field2</option></select>
-					<select><option>contains</option><option>beginsWith</option></select>
-					<input type="text" id="group1condition1Value">
-					<i class="fa fa-trash button-delete-condition"></i>
-				</p>
+			<table class="table header-group">
+				<tr>
+					<td>
+						<input type="text" class="form-control" value="Group title"></input>
+					</td>
+					<td>
+						<div class="condition-buttons">
+							<i class="fa fa-edit"></i>
+							<i class="fa fa-save"></i>
+							<i class="fa fa-trash"></i>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div id="group1Condition1" class="condition">
+				<table class="table body-group">
+					<tr>
+						<td>
+							<select class="form-control"><option>Field1</option><option>Field2</option></select>
+						</td>
+						<td>
+							<select class="form-control"><option>contains</option><option>beginsWith</option></select>
+						</td>
+						<td>
+							<input type="text" class="form-control" id="group1condition1Value">
+						</td>
+						<td>
+							<div class="condition-buttons">
+								<i class="fa fa-trash button-delete-condition"></i>
+							</div>
+						</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 		<div id="group1op" class="op-offset">
 			<select><option>AND</option><option>OR</option></select>
 		</div>
 		<div id="group2" class="group">
+			<table class="table header-group">
+				<tr>
+					<td>
+						<input type="text" class="form-control" value="Group title"></input>
+					</td>
+					<td>
+						<div class="condition-buttons">
+							<i class="fa fa-edit"></i>
+							<i class="fa fa-save"></i>
+							<i class="fa fa-trash"></i>
+						</div>
+					</td>
+				</tr>
+			</table>		
 			<div id="group2condition1" class="condition panel">
 				<p>my other container1<br/>2nd row</p>
 			</div>
@@ -99,7 +141,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 		<div>
-			test
+			test3
 		</div>
 		
 		<!--<div id="group3" class="group sm">

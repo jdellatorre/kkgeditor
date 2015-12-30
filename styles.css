@@ -11,9 +11,23 @@ body{ background-color: white; }
 	z-index: 10;
 }
 
-.button-delete-condition {
-	float: right;
+.header-group td {
+	padding-right: 10px !important;
 }
+
+.header-group {
+	margin-bottom: 10px !important;
+}
+
+.body-group {
+	margin-bottom: 0 !important;
+}
+
+.condition-buttons {
+	float: right;
+	padding-left: 10px;
+}
+
 
 #outer{
 	margin:0 auto;
