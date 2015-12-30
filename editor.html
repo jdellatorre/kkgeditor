@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-ng-app="artistApp">
 <head>
-	<script src="./jquery-1.11.3.min.js"></script>
-	<script src="./bootstrap.min.js"></script>
-	<script src="./svgDraw.js" ></script>
+	<script type="text/javascript" src="./libs/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="./libs/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./libs/angular.min.js"></script>
+	<script type="text/javascript" src="./libs/angular-route.js"></script>
+	
+	<script type="text/javascript" src="./scripts/svgDraw.js" ></script>
+	<script type="text/javascript" src="./scripts/queryModel.js" ></script>
+	<script type="text/javascript" src="./scripts/controllers.js"></script>
+	
 	<link rel="stylesheet" href="./css/font-awesome.min.css" />
 	<link rel="stylesheet" href="./css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="./styles.css" />
@@ -43,6 +49,14 @@
 	</script>
 </head>
 <body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1><span class="glyphicon glyphicon-volume-up"></span> Artist Catalog</h1>
+			</div>
+		</div>
+		<div data-ng-view></div>
+	</div>
 	
 	<div id="svgContainer" style="margin: 50px 50px;">
 		<svg id="svg1" width="0" height="0" >

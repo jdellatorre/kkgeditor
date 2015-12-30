@@ -1,0 +1,25 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Artist</th>
+                    <th>Genre</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="artist in artists" data-ng-click="artistDetail($index)">
+                    <td>{{artist.artist}}</td>
+                    <td>{{artist.genre}}</td>
+                    <td><star-rating star-rating="artist.rating"></star-rating></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <button class="btn btn-default" data-ng-click="artistAdd()">Add New</button>
+    </div>
+</div>
