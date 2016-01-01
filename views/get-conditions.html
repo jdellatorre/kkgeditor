@@ -1,0 +1,81 @@
+﻿
+<div id="svgContainer">
+	<svg id="svgPaths" width="0" height="0" >
+		<path data-ng-repeat="group in groups | filter: $first"
+			id="path{{$index}}"
+			d="M 0"         
+			stroke="#000" 
+			fill="none" 
+			stroke-width="12px"; />
+	</svg>
+</div>
+<span>{{test}}</span>
+<div data-ng-repeat="group in groups" style="margin: 50px 50px;">
+	<div id="group{{$index}}" class="group" ng-class="{'last': $last}">
+		<table class="table header-group">
+			<tr>
+				<td>
+					<input type="text" class="form-control" value="{{group.title}}"></input>
+				</td>
+				<td>
+					<div class="condition-buttons">
+						<button class="fa fa-edit"></button>
+						<button class="fa fa-save"></button>
+						<button class="fa fa-trash" ng-click="deleteGroup($index)" ></button>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<div data-ng-repeat="condition in group.conditions">
+			<div id="group{{$parent.$parent.$index}}Condition{{$index}}" class="condition panel" ng-class="{'last': $last}" >
+				<table class="table body-group">
+					<tr>
+						<td>
+							<select class="form-control"><option>Field1</option><option>Field2</option></select>
+						</td>
+						<td>
+							<select class="form-control"><option>contains</option><option>beginsWith</option></select>
+						</td>
+						<td>
+							<input id="group1condition1Value" value="{{condition.value}}" type="text" class="form-control" >
+						</td>
+						<td>
+							<div class="condition-buttons">
+								<button class="fa fa-trash button-delete-condition" ng-click="deleteCondition($parent.$index, $index)"></button>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div ng-if="!$last">
+				<div id="group{{$index}}ConditionOp" class="op-offset">
+					<select><option>AND</option><option>OR</option></select>
+				</div>
+			</div>
+			<div ng-if="$last">
+				<div class="text-center">
+					<button class="fa fa-plus plus-sign" ng-click="addCondition($parent.$parent.$index)"></button>	
+				</div>
+			</div>
+		</div>
+		<div ng-if="!$last">
+			<div id="group{{$index}}op" class="op-offset">
+				<select><option>AND</option><option>OR</option></select>
+			</div>
+		</div>
+	</div>
+	<div ng-if="!$first">
+		<script>
+			connectAll();
+		</script>
+	</div>
+	<div ng-if="$last">
+		<div class="group-plus">
+			<div class="text-center">
+				<button class="fa fa-plus plus-sign" ng-click="addGroup()"></button>	
+			</div>
+		</div>
+	</div>
+</div>
+		
+		

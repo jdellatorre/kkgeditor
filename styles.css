@@ -63,6 +63,18 @@ p {
 	padding: 10px;
 }
 
+.group:hover {
+	border-radius: 10px;
+	border: 2px solid #01DF01;
+	padding: 10px;
+}
+
+.condition:hover  {
+	border-radius: 10px;
+	border: 2px solid #01DF01;
+	padding: 10px;
+}
+
 .condition.last {
 	margin-bottom: 0;
 }
@@ -78,6 +90,12 @@ p {
 	border: 2px solid #bdbdbd;
 	border-radius: 5px;
 	margin: 5px 0 0 0;
+}
+
+.plus-sign:hover {
+	border-radius: 5px;
+	border: 2px solid #01DF01;
+	padding: 5px;
 }
 
 #outer{

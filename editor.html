@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="artistApp">
+<html lang="en" data-ng-app="queryApp">
 <head>
 	<script type="text/javascript" src="./libs/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="./libs/bootstrap.min.js"></script>
@@ -49,25 +49,18 @@
 	</script>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h1><span class="glyphicon glyphicon-volume-up"></span> Artist Catalog</h1>
-			</div>
-		</div>
-		<div data-ng-view></div>
-	</div>
 	
+	<!--
 	<div id="svgContainer" style="margin: 50px 50px;">
-		<svg id="svg1" width="0" height="0" >
+		<svg id="svga" width="0" height="0" >
 			<path
-				id="path1"
+				id="patha"
 				d="M0 0"         
 				stroke="#000" 
 				fill="none" 
 				stroke-width="12px";/>
 			<path
-				id="path2"
+				id="pathb"
 				d="M0 0"         
 				stroke="#000" 
 				fill="none" 
@@ -153,12 +146,16 @@
 			</div>
 		</div>
 		
-		<!--<div id="group3" class="group sm">
-			<div id="group3condition1" class="condition panel">
-				<p class="panel">my other container</p>
-			</div>
-		</div>-->
+		<div data-ng-view></div>
 	</div>
+</div>
+-->
+<div id="outer">
+	<div>
+		<h2>Query Editor</h2>
+	</div>
+	<div data-ng-view></div>
+	
 </div>
 
 	<!--

@@ -44,6 +44,7 @@ function drawPath(svg, path, startX, startY, endX, endY) {
 
 function connectElements(svg, path, startElem, endElem) {
     var svgContainer= $("#svgContainer");
+	
 
     // if first element is lower than the second, swap!
     if(startElem.offset().top > endElem.offset().top){
@@ -71,7 +72,7 @@ function connectElements(svg, path, startElem, endElem) {
 
     // call function for drawing the path
     drawPath(svg, path, startX, startY, endX, endY);
-	console.log("draw");
+	console.log("drawn");
 	
 	var leftOffsetOperator = 20;
 	var topOffsetOperator = 15;
@@ -83,10 +84,14 @@ function connectElements(svg, path, startElem, endElem) {
 
 function connectAll() {
     // connect all the paths you want!
-    connectElements($("#svg1"), $("#path1"), $("#group1"), $("#group2"));
-	connectElements($("#svg1"), $("#path2"), $("#group2condition1"), $("#group2condition2"));
+	console.log('connectall');
 	
-	console.log($("#path2"));
+	setTimeout(function(){  
+		console.log('connect');
+		connectElements($("#svgPaths"), $("#path0"), $("#group0"), $("#group1"));
+		//connectElements($("#svgPaths"), $("#pathabc"), $("#group0"), $("#group1"));
+		//connectElements($("#svgPaths"), $("#path1"), $("#group2condition1"), $("#group2condition2"));
+	}, 100);
 	/*
     connectElements($("#svg1"), $("#path2"), $("#red"),    $("#orange"));
     connectElements($("#svg1"), $("#path3"), $("#teal"),   $("#aqua")  );
@@ -98,14 +103,14 @@ function connectAll() {
 
 $(document).ready(function() {
     // reset svg each time 
-    $("#svg1").attr("height", "0");
-    $("#svg1").attr("width", "0");
+    $("#svgPaths").attr("height", "0");
+    $("#svgPaths").attr("width", "0");
     connectAll();
 });
 
 $(window).resize(function () {
     // reset svg each time 
-    $("#svg1").attr("height", "0");
-    $("#svg1").attr("width", "0");
+    $("#svgPaths").attr("height", "0");
+    $("#svgPaths").attr("width", "0");
     connectAll();
 });

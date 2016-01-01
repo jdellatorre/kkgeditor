@@ -13,151 +13,134 @@ var app = angular.module('artistApp', ['ngRoute']).config(function ($routeProvid
     });
 });
 
+var queryApp = angular.module('queryApp', ['ngRoute']).config(function ($routeProvider) {
+    $routeProvider.when('/getConditions', {
+        templateUrl: 'views/get-conditions.html',
+        controller: 'conditionsGetController'
+    }).otherwise({
+        redirectTo: '/getConditions'
+    });
+});
+
+var groupManager = function(groups) {
+	return {
+		groups: groups
+	}
+}
+
+var group = function(title, conditions) {
+	return {
+		title: title,
+		conditions: conditions
+	}
+}
+
+var condition = function(name, operator, value) {
+	return {
+		fieldname: name,
+		operator: operator,
+		value: value
+	}
+}
+
+queryApp.factory('queryService', ['$rootScope', '$http',
+  function ($rootScope, $http) {
+    var queryService = {};
+
+	var groups = [
+		new group("group title1", [
+			new condition("Field1", "contains", "aaaa"),
+			new condition("Field2", "contains", "bbbbb")
+		]),
+		new group("group title2", [
+			new condition("Field1", "contains", "cccc")
+		])
+	];
+		  
+      //artist operations
+	queryService.getConditions = function (callback) {
+		console.log('loading');
+		callback($rootScope.data = groups);
+	};
+	
+	$rootScope.alert = function(){
+	  alert('alerted!');
+	};
+	
+	//add artist
+    queryService.addCondition = function(index) {
+		console.log("add condition from service" + index);
+          groups[index].conditions.push(
+				new condition("Field1", "contains", "condition to modify")
+			);
+			connectAll();
+      };
+	  
+	//add artist
+    queryService.addGroup = function() {
+		console.log("add from service");
+          groups.push(
+				new group("group to modify", [
+					new condition("Field1", "contains", "cccc")
+				])
+			);
+      };
+	  
+	queryService.deleteGroup = function(index) {
+		groups.splice(index, 1);
+		connectAll();
+    };
+	  
+	 queryService.deleteCondition = function(groupIndex, index) {
+			console.log("delete condition from service" + groupIndex +  index);
+          
+			groups[groupIndex].conditions.splice(index, 1);
+			connectAll();
+      };
+	  
+	  return queryService;
+	}
+	
+]);
+
 app.factory('shptService', ['$rootScope', '$http',
   function ($rootScope, $http) {
       var shptService = {};
-
-      //utility function to get parameter from query string
-      shptService.getQueryStringParameter = function (urlParameterKey) {
-          var params = document.URL.split('?')[1].split('&');
-          var strParams = '';
-          for (var i = 0; i < params.length; i = i + 1) {
-              var singleParam = params[i].split('=');
-              if (singleParam[0] == urlParameterKey)
-                  return singleParam[1];
-          }
-      }
-      shptService.appWebUrl = decodeURIComponent(shptService.getQueryStringParameter('SPAppWebUrl')).split('#')[0];
-      shptService.hostWebUrl = decodeURIComponent(shptService.getQueryStringParameter('SPHostUrl')).split('#')[0];
-
-      //form digest opertions since we aren't using SharePoint MasterPage
-      var formDigest = null;
-      shptService.ensureFormDigest = function (callback) {
-          if (formDigest != null)
-              callback(formDigest);
-          else {
-              $http.post(shptService.appWebUrl + '/_api/contextinfo?$select=FormDigestValue', {}, {
-                  headers: {
-                      'Accept': 'application/json; odata=verbose',
-                      'Content-Type': 'application/json; odata=verbose'
-                  }
-              }).success(function (d) {
-                  formDigest = d.d.GetContextWebInformation.FormDigestValue;
-                  callback(formDigest);
-              }).error(function (er) {
-                  alert('Error getting form digest value');
-              });
-          }
-      };
-
 
       //artist operations
       var artists = null;
       shptService.getArtists = function (callback) {
           //check if we already have artists
-          if (artists != null)
-              callback(artists);
-          else {
-              //ensure form digest
-              shptService.ensureFormDigest(function (fDigest) {
-                  //perform GET for all artists
-                  $http({
-                      method: 'GET',
-                      url: shptService.appWebUrl + '/_api/web/Lists/getbytitle(\'Artists\')/Items?select=Title,Genre,Rating',
-                      headers: {
-                          'Accept': 'application/json; odata=verbose'
-                      }
-                  }).success(function (d) {
-                      artists = [];
-                      $(d.d.results).each(function (i, e) {
-                          artists.push({
-                              id: e['Id'],
-                              artist: e['Title'],
-                              genre: e['Genre'],
-                              rating: e['AverageRating']
-                          });
-                      });
-                      callback(artists);
-                  }).error(function (er) {
-                      alert(er);
-                  });
-              });
-          }
+		  //ensure form digest
+			console.log('loading');
+			
+              callback($rootScope.data = [{
+				artist: "test",
+				genre: "Pop",
+				rating: 4
+			  },
+			  {
+				artist: "test22",
+				genre: "Pop",
+				rating: 4
+			  }]);
       };
 
       //add artist
       shptService.addArtist = function (artist, callback) {
           //ensure form digest
-          shptService.ensureFormDigest(function (fDigest) {
-              $http.post(
-                  shptService.appWebUrl + '/_api/web/Lists/getbytitle(\'Artists\')/items',
-                  { 'Title': artist.artist, 'Genre': artist.genre, 'AverageRating': artist.rating },
-                  {
-                  headers: {
-                      'Accept': 'application/json; odata=verbose',
-                      'X-RequestDigest': fDigest
-                  }
-                  }).success(function (d) {
-                      artist.id = d.d.ID;
-                      artists.push(artist);
-                      callback();
-                  }).error(function (er) {
-                      alert(er);
-                  });
-          });
       };
 
       //update artist
       shptService.updateArtist = function (artist, callback) {
-          //ensure form digest
-          shptService.ensureFormDigest(function (fDigest) {
-              $http.post(
-                  shptService.appWebUrl + '/_api/web/Lists/getbytitle(\'Artists\')/items(' + artist.id + ')',
-                  { 'Title': artist.artist, 'Genre': artist.genre, 'AverageRating': artist.rating },
-                  {
-                      headers: {
-                          'Accept': 'application/json; odata=verbose',
-                          'X-RequestDigest': fDigest,
-                          'X-HTTP-Method': 'MERGE',
-                          'IF-MATCH': '*'
-                      }
-                  }).success(function (d) {
-                      callback();
-                  }).error(function (er) {
-                      alert(er);
-                  });
-          });
+          //e
       };
 
       //genre operations
       var genres = null;
       shptService.getGenres = function (callback) {
-          //check if we already have genres
-          if (genres != null)
-              callback(genres);
-          else {
-              //ensure form digest
-              shptService.ensureFormDigest(function (fDigest) {
-                  //perform GET for all genres
-                  $http({
-                      method: 'GET',
-                      url: shptService.appWebUrl + '/_api/web/Lists/getbytitle(\'Genres\')/Items?select=Title',
-                      headers: {
-                          'Accept': 'application/json; odata=verbose'
-                      }
-                  }).success(function (d) {
-                      genres = [];
-                      $(d.d.results).each(function (i, e) {
-                          genres.push({
-                              genre: e['Title']
-                          });
-                      });
-                      callback(genres)
-                  }).error(function (er) {
-                      alert(er);
-                  });
-              });
-          }
+           console.log('genres');
+		   
       };
 
       return shptService;

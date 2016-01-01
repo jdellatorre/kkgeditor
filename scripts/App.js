@@ -25,7 +25,11 @@ app.factory('shptService', ['$rootScope', '$http',
               callback(artists);
           else {
               //ensure form digest
-              
+              $rootScope.data = [{
+				name: "test",
+				genre: "Pop",
+				rating: 4
+			  }];
           }
       };
 

@@ -15,6 +15,45 @@ app.controller('listController', ['$scope', '$location', 'shptService', function
     };
 }]);
 
+queryApp.controller('conditionsGetController', ['$scope', '$location', 'queryService', function ($scope, $location, queryService) {
+    $scope.conditions = [];
+    queryService.getConditions(function (data) {
+		console.log("get");
+        $scope.groups = data;
+		$scope.test = data.length;
+        $scope.$apply();
+    });
+	
+	$scope.test = function () {
+        alert("test from controller");
+    };
+	
+	$scope.addGroup = function () {
+		queryService.addGroup();
+    };
+	
+	$scope.deleteGroup = function(index) {
+		queryService.deleteGroup(index);
+	}
+	
+	$scope.addCondition = function (index) {
+		queryService.addCondition(index);
+    };
+	
+	$scope.deleteCondition = function(groupIndex, index) {
+		queryService.deleteCondition(groupIndex, index);
+	}
+	/*
+    $scope.artistDetail = function (index) {
+        $location.path('/artists/' + index);
+    };
+
+    $scope.artistAdd = function () {
+        $location.path('/artists/add');
+    };
+	*/
+}]);
+
 app.controller('addController', ['$scope', '$location', 'shptService', function ($scope, $location, shptService) {
     $scope.genres = [];
     shptService.getGenres(function (data) {
