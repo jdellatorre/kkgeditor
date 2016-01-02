@@ -43,23 +43,59 @@ var condition = function(name, operator, value) {
 	}
 }
 
+var field = function(title, value) {
+	return {
+		title: title,
+		value: value
+	}
+}
+
+var operator = function(title, value) {
+	return {
+		title: title,
+		value: value
+	}
+}
+
 queryApp.factory('queryService', ['$rootScope', '$http',
   function ($rootScope, $http) {
     var queryService = {};
 
+	var fields = [
+		new field("F1", "Field1 value"),
+		new field("F2", "Field2 value"),
+		new field("F3", "Field3 value")
+	];
+	
+	var operators = [
+		new operator("contains", "contains"),
+		new operator("begins with", "beginsWith"),
+		new operator("equals", "equals")
+	];
+	
 	var groups = [
 		new group("group title1", [
-			new condition("Field1", "contains", "aaaa"),
-			new condition("Field2", "contains", "bbbbb")
+			new condition("F1", "contains", "aaaa"),
+			new condition("F3", "begins with", "bbbbb")
 		]),
 		new group("group title2", [
-			new condition("Field1", "contains", "cccc")
+			new condition("F2", "equals", "cccc")
 		])
 	];
+	
+	queryService.getFields = function (callback) {
+		console.log('loading fields');
+		callback($rootScope.data = fields);
+	};
+	
+	queryService.getOperators = function (callback) {
+		console.log('loading operators');
+		callback($rootScope.data = operators);
+	};
 		  
       //artist operations
 	queryService.getConditions = function (callback) {
-		console.log('loading');
+		//console.log('loading');
 		callback($rootScope.data = groups);
 	};
 	
@@ -97,6 +133,11 @@ queryApp.factory('queryService', ['$rootScope', '$http',
 			groups[groupIndex].conditions.splice(index, 1);
 			connectAll();
       };
+	  
+	queryService.save = function() {
+		var json = JSON.stringify(groups);
+		console.log(json);
+	};
 	  
 	  return queryService;
 	}

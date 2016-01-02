@@ -18,9 +18,17 @@ app.controller('listController', ['$scope', '$location', 'shptService', function
 queryApp.controller('conditionsGetController', ['$scope', '$location', 'queryService', function ($scope, $location, queryService) {
     $scope.conditions = [];
     queryService.getConditions(function (data) {
-		console.log("get");
         $scope.groups = data;
-		$scope.test = data.length;
+        $scope.$apply();
+    });
+	
+	queryService.getFields(function (data) {
+        $scope.fields = data;
+        $scope.$apply();
+    });
+	
+	queryService.getOperators(function (data) {
+        $scope.operators = data;
         $scope.$apply();
     });
 	
@@ -43,6 +51,10 @@ queryApp.controller('conditionsGetController', ['$scope', '$location', 'querySer
 	$scope.deleteCondition = function(groupIndex, index) {
 		queryService.deleteCondition(groupIndex, index);
 	}
+	
+	$scope.save = function () {
+		queryService.save();
+    };
 	/*
     $scope.artistDetail = function (index) {
         $location.path('/artists/' + index);

@@ -9,18 +9,15 @@
 			stroke-width="12px"; />
 	</svg>
 </div>
-<span>{{test}}</span>
 <div data-ng-repeat="group in groups" style="margin: 50px 50px;">
 	<div id="group{{$index}}" class="group" ng-class="{'last': $last}">
 		<table class="table header-group">
 			<tr>
 				<td>
-					<input type="text" class="form-control" value="{{group.title}}"></input>
+					<input type="text" class="form-control" ng-model="group.title" value="{{group.title}}"></input>
 				</td>
 				<td>
 					<div class="condition-buttons">
-						<button class="fa fa-edit"></button>
-						<button class="fa fa-save"></button>
 						<button class="fa fa-trash" ng-click="deleteGroup($index)" ></button>
 					</div>
 				</td>
@@ -31,13 +28,19 @@
 				<table class="table body-group">
 					<tr>
 						<td>
-							<select class="form-control"><option>Field1</option><option>Field2</option></select>
+							<select class="form-control" ng-model="condition.fieldname">
+								<option ng-selected="field.title == condition.fieldname"
+									data-ng-repeat="field in fields" value="{{field.title}}" >{{field.title}}</option>
+							</select>
 						</td>
 						<td>
-							<select class="form-control"><option>contains</option><option>beginsWith</option></select>
+							<select class="form-control" ng-model="condition.operator">
+								<option ng-selected="operator.title == condition.operator"
+									data-ng-repeat="operator in operators" ng-model="operator.title" >{{operator.title}}</option>
+							</select>
 						</td>
 						<td>
-							<input id="group1condition1Value" value="{{condition.value}}" type="text" class="form-control" >
+							<input id="group1condition1Value" ng-model="condition.value" value="{{condition.value}}" type="text" class="form-control" >
 						</td>
 						<td>
 							<div class="condition-buttons">
@@ -77,5 +80,7 @@
 		</div>
 	</div>
 </div>
-		
+<div>
+	<button ng-click="save()">Save</button>
+</div>	
 		
