@@ -1,7 +1,6 @@
 app.controller('listController', ['$scope', '$location', 'shptService', function ($scope, $location, shptService) {
     $scope.artists = [];
     shptService.getArtists(function (data) {
-		console.log("get");
         $scope.artists = data;
         $scope.$apply();
     });
@@ -32,9 +31,19 @@ queryApp.controller('conditionsGetController', ['$scope', '$location', 'querySer
         $scope.$apply();
     });
 	
-	$scope.test = function () {
-        alert("test from controller");
+	$scope.count = function () {
+        $scope.count = 5;
     };
+	
+	$scope.test = function () {
+		var count = $scope.groups.length - 1;
+		$($scope.groups).each(function(index, element) {
+			if(element.conditions.length > 0) {
+				count += element.conditions.length -1;
+			}
+		});
+		return count;
+	};
 	
 	$scope.addGroup = function () {
 		queryService.addGroup();

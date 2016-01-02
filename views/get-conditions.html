@@ -18,7 +18,7 @@
 				</td>
 				<td>
 					<div class="condition-buttons">
-						<button class="fa fa-trash" ng-click="deleteGroup($index)" ></button>
+						<button class="btn btn-default fa fa-trash" ng-disabled="$first && $last" ng-click="deleteGroup($index)" ></button>
 					</div>
 				</td>
 			</tr>
@@ -44,7 +44,7 @@
 						</td>
 						<td>
 							<div class="condition-buttons">
-								<button class="fa fa-trash button-delete-condition" ng-click="deleteCondition($parent.$index, $index)"></button>
+								<button type="button" class="btn btn-default fa fa-trash button-delete-condition" ng-disabled="$first && $last" ng-click="deleteCondition($parent.$index, $index)"></button>
 							</div>
 						</td>
 					</tr>

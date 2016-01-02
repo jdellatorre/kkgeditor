@@ -84,18 +84,15 @@ queryApp.factory('queryService', ['$rootScope', '$http',
 	];
 	
 	queryService.getFields = function (callback) {
-		console.log('loading fields');
 		callback($rootScope.data = fields);
 	};
 	
 	queryService.getOperators = function (callback) {
-		console.log('loading operators');
 		callback($rootScope.data = operators);
 	};
 		  
       //artist operations
 	queryService.getConditions = function (callback) {
-		//console.log('loading');
 		callback($rootScope.data = groups);
 	};
 	
@@ -105,7 +102,6 @@ queryApp.factory('queryService', ['$rootScope', '$http',
 	
 	//add artist
     queryService.addCondition = function(index) {
-		console.log("add condition from service" + index);
           groups[index].conditions.push(
 				new condition("Field1", "contains", "condition to modify")
 			);
@@ -114,7 +110,6 @@ queryApp.factory('queryService', ['$rootScope', '$http',
 	  
 	//add artist
     queryService.addGroup = function() {
-		console.log("add from service");
           groups.push(
 				new group("group to modify", [
 					new condition("Field1", "contains", "cccc")
@@ -128,8 +123,6 @@ queryApp.factory('queryService', ['$rootScope', '$http',
     };
 	  
 	 queryService.deleteCondition = function(groupIndex, index) {
-			console.log("delete condition from service" + groupIndex +  index);
-          
 			groups[groupIndex].conditions.splice(index, 1);
 			connectAll();
       };
@@ -153,7 +146,6 @@ app.factory('shptService', ['$rootScope', '$http',
       shptService.getArtists = function (callback) {
           //check if we already have artists
 		  //ensure form digest
-			console.log('loading');
 			
               callback($rootScope.data = [{
 				artist: "test",

@@ -12,6 +12,11 @@ p {
 	opacity: 0.5;
 }
 
+.fa-trash  {
+	padding: 3px 8px;
+	background-color: #ccc;
+}
+
 .group {
 	border-radius: 10px;
 	border: 2px solid #bdbdbd;
