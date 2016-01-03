@@ -38,6 +38,7 @@ p {
 .op-offset {
 	position: absolute;
 	z-index: 10;
+	left: 340px;
 }
 
 .header-group td {

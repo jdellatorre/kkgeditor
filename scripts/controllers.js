@@ -80,10 +80,8 @@ queryApp.controller('conditionsGetController', ['$scope', '$location', 'querySer
 		var paths = $scope.paths();
 		
 		setTimeout(function(){
-			console.log(paths.length);
 			for(var i = 0; i < paths.length; i++) {
 				var path = paths[i];
-				console.log(i, path.name, path.source, path.target);
 				connectElements($("#svgPaths"), $("#" + path.name), $("#" + path.source), $("#" + path.target));
 			}
 		}, 200);

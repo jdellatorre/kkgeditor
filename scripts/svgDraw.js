@@ -75,10 +75,12 @@ function connectElements(svg, path, startElem, endElem) {
     drawPath(svg, path, startX, startY, endX, endY);
 	//console.log("drawn");
 	
-	var leftOffsetOperator = 20;
-	var topOffsetOperator = 15;
+	var topOffsetOperator = 66;
 	
-	startElem.next().css({left:startX + svgLeft - leftOffsetOperator,top:startY + svgTop + topOffsetOperator});
+	console.log(startX, svgLeft, startY,  svgTop);
+	
+	var connectedOperator = $("#" + startElem.attr('id') + "op");
+	connectedOperator.css('top', endY + topOffsetOperator);
 }
 
 function connect(param){

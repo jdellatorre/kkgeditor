@@ -9,14 +9,6 @@
 			stroke-width="12px"; />
 	</svg>
 </div>
-<div data-ng-repeat="path in paths()" >
-	<span>{{path.name}}</span>
-	<span>{{path.source}}</span>
-	<span>{{path.target}}</span>
-	<span>{{path.isLast}}</span>
-	<br/>
-</div>
-<span ng-bind="paths().length"></span>
 <div data-ng-repeat="group in groups" style="margin: 50px 50px;">
 	<div id="group{{$index}}" class="group" ng-class="{'last': $last}">
 		<table class="table header-group">
@@ -59,7 +51,7 @@
 				</table>
 			</div>
 			<div ng-if="!$last">
-				<div id="group{{$index}}ConditionOp" class="op-offset">
+				<div id="group{{$parent.$parent.$index}}condition{{$index}}op" class="op-offset operation-condition">
 					<select><option>AND</option><option>OR</option></select>
 				</div>
 			</div>
@@ -69,10 +61,8 @@
 				</div>
 			</div>
 		</div>
-		<div ng-if="!$last">
-			<div id="group{{$index}}op" class="op-offset">
-				<select><option>AND</option><option>OR</option></select>
-			</div>
+		<div ng-if="!$last" id="group{{$index}}op" class="op-offset operation-group">
+			<select><option>AND</option><option>OR</option></select>
 		</div>
 	</div>
 	<div ng-if="$last">
