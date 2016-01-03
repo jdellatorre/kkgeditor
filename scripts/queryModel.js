@@ -100,6 +100,10 @@ queryApp.factory('queryService', ['$rootScope', '$http',
 	  alert('alerted!');
 	};
 	
+	$rootScope.count = function(){
+	  return 4;
+	};
+	
 	//add artist
     queryService.addCondition = function(index) {
           groups[index].conditions.push(

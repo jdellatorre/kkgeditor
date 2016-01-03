@@ -71,8 +71,9 @@ function connectElements(svg, path, startElem, endElem) {
     var endY = endCoord.top  - svgTop;
 
     // call function for drawing the path
+	//console.log(startX, startY, endX, endY);
     drawPath(svg, path, startX, startY, endX, endY);
-	console.log("drawn");
+	//console.log("drawn");
 	
 	var leftOffsetOperator = 20;
 	var topOffsetOperator = 15;
@@ -80,37 +81,33 @@ function connectElements(svg, path, startElem, endElem) {
 	startElem.next().css({left:startX + svgLeft - leftOffsetOperator,top:startY + svgTop + topOffsetOperator});
 }
 
-
+function connect(param){
+	console.log(param);
+}
 
 function connectAll() {
     // connect all the paths you want!
 	console.log('connectall');
 	
 	setTimeout(function(){  
-		console.log('connect');
-		connectElements($("#svgPaths"), $("#path0"), $("#group0"), $("#group1"));
+		console.log("connectAllinside");
+		
+		//connectElements($("#svgPaths"), $("#path0"), $("#group0"), $("#group1"));
 		//connectElements($("#svgPaths"), $("#pathabc"), $("#group0"), $("#group1"));
 		//connectElements($("#svgPaths"), $("#path1"), $("#group2condition1"), $("#group2condition2"));
-	}, 100);
-	/*
-    connectElements($("#svg1"), $("#path2"), $("#red"),    $("#orange"));
-    connectElements($("#svg1"), $("#path3"), $("#teal"),   $("#aqua")  );
-    connectElements($("#svg1"), $("#path4"), $("#red"),    $("#aqua")  ); 
-    connectElements($("#svg1"), $("#path5"), $("#purple"), $("#teal")  );
-    connectElements($("#svg1"), $("#path6"), $("#orange"), $("#green") );
-	*/
+	}, 200);
 }
 
 $(document).ready(function() {
     // reset svg each time 
     $("#svgPaths").attr("height", "0");
     $("#svgPaths").attr("width", "0");
-    connectAll();
+    //connectAll();
 });
 
 $(window).resize(function () {
     // reset svg each time 
     $("#svgPaths").attr("height", "0");
     $("#svgPaths").attr("width", "0");
-    connectAll();
+    //connectAll();
 });

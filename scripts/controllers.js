@@ -14,6 +14,15 @@ app.controller('listController', ['$scope', '$location', 'shptService', function
     };
 }]);
 
+var path = function(name, source, target, isLast) {
+	return {
+		name: name,
+		source: source,
+		target: target,
+		isLast: isLast
+	}
+}
+
 queryApp.controller('conditionsGetController', ['$scope', '$location', 'queryService', function ($scope, $location, queryService) {
     $scope.conditions = [];
     queryService.getConditions(function (data) {
@@ -32,18 +41,53 @@ queryApp.controller('conditionsGetController', ['$scope', '$location', 'querySer
     });
 	
 	$scope.count = function () {
-        $scope.count = 5;
+        return 5;
     };
 	
-	$scope.test = function () {
-		var count = $scope.groups.length - 1;
-		$($scope.groups).each(function(index, element) {
-			if(element.conditions.length > 0) {
-				count += element.conditions.length -1;
-			}
-		});
-		return count;
+	$scope.count = function() {
+		return 3;
 	};
+	
+	$scope.paths = function () {
+		var paths = [];
+
+		var counter = 0;
+		for(var i = 0; i < $scope.groups.length; i++) {
+			if(i > 0) {
+				var isLast = i == $scope.groups.length-1;
+				paths.push(new path("path" + counter, "group" + (i-1), "group" + i, isLast));
+				counter++;
+			}
+			
+			var group = $scope.groups[i];
+			
+			for(var j = 0; j < group.conditions.length; j++) {			
+				if(j > 0) {
+					var isLast = j == group.conditions.length-1;
+					paths.push(new path(
+						"path" + counter,
+						"group" + i + "condition" + (j-1),
+						"group" + i + "condition" + j,
+						isLast));
+					counter++;
+				}
+			}
+		}
+		return paths;
+	};
+	
+	$scope.drawPaths = function(){
+		var paths = $scope.paths();
+		
+		setTimeout(function(){
+			console.log(paths.length);
+			for(var i = 0; i < paths.length; i++) {
+				var path = paths[i];
+				console.log(i, path.name, path.source, path.target);
+				connectElements($("#svgPaths"), $("#" + path.name), $("#" + path.source), $("#" + path.target));
+			}
+		}, 200);
+	}
 	
 	$scope.addGroup = function () {
 		queryService.addGroup();

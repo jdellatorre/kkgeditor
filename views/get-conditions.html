@@ -1,14 +1,22 @@
 ﻿
 <div id="svgContainer">
 	<svg id="svgPaths" width="0" height="0" >
-		<path data-ng-repeat="group in groups | filter: $first"
-			id="path{{$index}}"
-			d="M 0"         
+		<path data-ng-repeat="path in paths()"
+			id="{{path.name}}"
+			d="M0 0"         
 			stroke="#000" 
 			fill="none" 
 			stroke-width="12px"; />
 	</svg>
 </div>
+<div data-ng-repeat="path in paths()" >
+	<span>{{path.name}}</span>
+	<span>{{path.source}}</span>
+	<span>{{path.target}}</span>
+	<span>{{path.isLast}}</span>
+	<br/>
+</div>
+<span ng-bind="paths().length"></span>
 <div data-ng-repeat="group in groups" style="margin: 50px 50px;">
 	<div id="group{{$index}}" class="group" ng-class="{'last': $last}">
 		<table class="table header-group">
@@ -24,7 +32,7 @@
 			</tr>
 		</table>
 		<div data-ng-repeat="condition in group.conditions">
-			<div id="group{{$parent.$parent.$index}}Condition{{$index}}" class="condition panel" ng-class="{'last': $last}" >
+			<div id="group{{$parent.$index}}condition{{$index}}" class="condition panel" ng-class="{'last': $last}" >
 				<table class="table body-group">
 					<tr>
 						<td>
@@ -67,11 +75,6 @@
 			</div>
 		</div>
 	</div>
-	<div ng-if="!$first">
-		<script>
-			connectAll();
-		</script>
-	</div>
 	<div ng-if="$last">
 		<div class="group-plus">
 			<div class="text-center">
@@ -80,6 +83,7 @@
 		</div>
 	</div>
 </div>
+<div ng-bind="drawPaths()"></div>
 <div>
 	<button ng-click="save()">Save</button>
 </div>	
