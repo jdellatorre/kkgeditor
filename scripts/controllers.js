@@ -25,6 +25,16 @@ var path = function(name, source, target, isLast) {
 
 queryApp.controller('conditionsGetController', ['$scope', '$location', 'queryService', function ($scope, $location, queryService) {
     $scope.conditions = [];
+	queryService.getSortings(function (data) {
+        $scope.sortings = data;
+        $scope.$apply();
+    });
+	
+	queryService.getLists(function (data) {
+        $scope.lists = data;
+        $scope.$apply();
+    });
+	
     queryService.getConditions(function (data) {
         $scope.groups = data;
         $scope.$apply();
@@ -40,13 +50,9 @@ queryApp.controller('conditionsGetController', ['$scope', '$location', 'querySer
         $scope.$apply();
     });
 	
-	$scope.count = function () {
-        return 5;
+	queryService.queryname = function () {
+        return $scope.queryname;
     };
-	
-	$scope.count = function() {
-		return 3;
-	};
 	
 	$scope.paths = function () {
 		var paths = [];

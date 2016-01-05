@@ -1,0 +1,18 @@
+﻿
+
+
+	<table class="table table-striped">
+		<tr data-ng-repeat="list in lists" >
+			<td width="30px">
+				<input type="checkbox" ng-checked="list.selected"></div>
+			</td>
+			<td>
+				{{list.title}}
+			</td>
+		</tr>
+	</table>
+
+<div>
+	<button ng-click="save()">Save</button>
+</div>	
+		

@@ -4,12 +4,16 @@ p {
 	margin: 0;
 }
 
-#container { margin:50px; background-color: #ffffff; }
+#container { background-color: #ffffff; }
 
 #svgContainer { 
 	z-index: -10;
 	position:absolute;
 	opacity: 0.5;
+}
+
+.view-container {
+	margin: 10px 0 30px 0;
 }
 
 .fa-trash  {
@@ -22,7 +26,7 @@ p {
 	border: 2px solid #bdbdbd;
 	padding: 10px;
 	margin-bottom: 50px;
-	width: 500px;
+	width: 768px;
 }
 
 .group.last {
@@ -38,7 +42,7 @@ p {
 .op-offset {
 	position: absolute;
 	z-index: 10;
-	left: 340px;
+	left: 400px;
 }
 
 .header-group td {
@@ -88,7 +92,7 @@ p {
 .group-plus {
 	margin-top: 5px;
 	border-radius: 10px;
-	width: 500px;
+	width: 768px;
 }
 
 .plus-sign {
@@ -106,7 +110,6 @@ p {
 
 #outer{
 	margin:0 auto;
-	width: 80%;
 }
 
 #teal{

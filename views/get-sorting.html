@@ -1,0 +1,17 @@
+﻿
+<div>
+	<div data-ng-repeat="sorting in sortings" >
+		<div><b>Sorting {{$index+1}}</b></div>
+		<br/>
+		<select class="form-control" ng-model="sorting.name">
+			<option ng-selected="field.title == sorting.name"
+				data-ng-repeat="field in fields" value="{{field.title}}" >{{field.title}}</option>
+		</select>
+		<br/>
+	</div>
+</div>
+<div ng-bind="drawPaths()"></div>
+<div>
+	<button ng-click="save()">Save</button>
+</div>	
+		

@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="queryApp">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./styles.css" />
+		
 	<script type="text/javascript" src="./libs/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="./libs/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./libs/angular.min.js"></script>
@@ -10,9 +15,6 @@
 	<script type="text/javascript" src="./scripts/queryModel.js" ></script>
 	<script type="text/javascript" src="./scripts/controllers.js"></script>
 	
-	<link rel="stylesheet" href="./css/font-awesome.min.css" />
-	<link rel="stylesheet" href="./css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="./styles.css" />
 	
 	<style>
 	.condition-hover {
@@ -150,11 +152,21 @@
 	</div>
 </div>
 -->
-<div id="outer">
+<div id="outer" style="margin-left: 50px;">
 	<div>
 		<h2>Query Editor</h2>
 	</div>
-	<div data-ng-view></div>
+	<br/>
+	{{queryname}}
+	Name: <input type="text" class="form-control" value="Your query name"></input>
+	<br/>
+	 <ul class="nav nav-pills">
+		<li class="active" data-toggle="tab"><a href="#/listSelection">List selection</a></li>
+		<li data-toggle="tab"><a href="#/getConditions">Conditions</a></li>
+		<li data-toggle="tab"><a href="#/sorting">Sorting</a></li>
+		<li data-toggle="tab"><a href="#/preview">Preview</a></li>
+	  </ul>
+	<div class="view-container" data-ng-view></div>
 	
 </div>
 

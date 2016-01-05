@@ -17,8 +17,17 @@ var queryApp = angular.module('queryApp', ['ngRoute']).config(function ($routePr
     $routeProvider.when('/getConditions', {
         templateUrl: 'views/get-conditions.html',
         controller: 'conditionsGetController'
+	 }).when('/listSelection', {
+        templateUrl: 'views/get-listSelection.html',
+        controller: 'conditionsGetController'
+	 }).when('/sorting', {
+        templateUrl: 'views/get-sorting.html',
+        controller: 'conditionsGetController'
+	}).when('/preview', {
+        templateUrl: 'views/get-preview.html',
+        controller: 'conditionsGetController'
     }).otherwise({
-        redirectTo: '/getConditions'
+        redirectTo: '/listSelection'
     });
 });
 
@@ -57,6 +66,21 @@ var operator = function(title, value) {
 	}
 }
 
+var list = function(title, selected) {
+	return {
+		title: title,
+		id: "dummy",
+		selected: selected
+	}
+}
+
+var sorting = function(name, order) {
+	return {
+		name: name,
+		order: order
+	}
+}
+
 queryApp.factory('queryService', ['$rootScope', '$http',
   function ($rootScope, $http) {
     var queryService = {};
@@ -82,6 +106,29 @@ queryApp.factory('queryService', ['$rootScope', '$http',
 			new condition("F2", "equals", "cccc")
 		])
 	];
+	
+	var lists = [
+		new list("list 1", true),
+		new list("list 2", false),
+		new list("list 3", true)
+	];
+	
+	var sortings = [
+		new sorting("F2", 1),
+		new sorting("F3", 2)
+	];
+	
+	$rootScope.queryname = function(){
+		return "Your queryname";
+	};
+	
+	queryService.getSortings = function (callback) {
+		callback($rootScope.data = sortings);
+	};
+	
+	queryService.getLists = function (callback) {
+		callback($rootScope.data = lists);
+	};
 	
 	queryService.getFields = function (callback) {
 		callback($rootScope.data = fields);
