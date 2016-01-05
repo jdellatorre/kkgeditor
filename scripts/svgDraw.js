@@ -75,7 +75,7 @@ function connectElements(svg, path, startElem, endElem) {
     drawPath(svg, path, startX, startY, endX, endY);
 	//console.log("drawn");
 	
-	var topOffsetOperator = 116;
+	var topOffsetOperator = 170;
 	
 	//console.log(startX, svgLeft, startY,  svgTop);
 	

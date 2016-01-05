@@ -117,11 +117,7 @@ queryApp.factory('queryService', ['$rootScope', '$http',
 		new sorting("F2", 1),
 		new sorting("F3", 2)
 	];
-	
-	$rootScope.queryname = function(){
-		return "Your queryname";
-	};
-	
+		
 	queryService.getSortings = function (callback) {
 		callback($rootScope.data = sortings);
 	};

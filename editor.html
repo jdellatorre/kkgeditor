@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="queryApp">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
 	<link rel="stylesheet" href="./css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./styles.css" />
-		
+	
 	<script type="text/javascript" src="./libs/jquery-1.11.3.min.js"></script>
+	<script>
+    $(document).bind('mobileinit',function(){
+        $.mobile.changePage.defaults.changeHash = false;
+        $.mobile.hashListeningEnabled = false;
+        $.mobile.pushStateEnabled = false;
+    });
+</script>
+
+	
 	<script type="text/javascript" src="./libs/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./libs/angular.min.js"></script>
 	<script type="text/javascript" src="./libs/angular-route.js"></script>
@@ -157,8 +165,7 @@
 		<h2>Query Editor</h2>
 	</div>
 	<br/>
-	{{queryname}}
-	Name: <input type="text" class="form-control" value="Your query name"></input>
+	Name: <input type="text" class="form-control" value="My first query"></input>
 	<br/>
 	 <ul class="nav nav-pills">
 		<li class="active" data-toggle="tab"><a href="#/listSelection">List selection</a></li>

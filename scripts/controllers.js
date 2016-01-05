@@ -50,10 +50,6 @@ queryApp.controller('conditionsGetController', ['$scope', '$location', 'querySer
         $scope.$apply();
     });
 	
-	queryService.queryname = function () {
-        return $scope.queryname;
-    };
-	
 	$scope.paths = function () {
 		var paths = [];
 
