@@ -1,0 +1,17 @@
+---
+List: Queries
+ID #
+Queryname ""
+CreatedBy ""
+Listnames [A;B|All]
+ConditionTemplate (5 or 11 or 18) and (21 and 22)
+<AND>
+	<eq>
+	</eq>
+</AND>
+---
+List: Conditions
+ID #
+Fieldname ""
+Operator ""
+Fieldvalue ""

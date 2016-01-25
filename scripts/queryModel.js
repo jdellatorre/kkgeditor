@@ -86,9 +86,15 @@ queryApp.factory('queryService', ['$rootScope', '$http',
     var queryService = {};
 
 	var fields = [
-		new field("F1", "Field1 value"),
-		new field("F2", "Field2 value"),
-		new field("F3", "Field3 value")
+		new field("Abteilung", "Field1 value"),
+		new field("OE", "Field2 value"),
+		new field("Anfangsdatum", "Field3 value"),
+		new field("Faellig am", "Field4 value"),
+		new field("Status", "Field4 value"),
+		new field("Titel", "Field4 value"),
+		new field("U. Sachbearbeiter", "Field4 value"),
+		new field("Vertraulich", "Field4 value"),
+		new field("Zugewiesen an", "Field4 value")
 	];
 	
 	var operators = [
@@ -99,23 +105,29 @@ queryApp.factory('queryService', ['$rootScope', '$http',
 	
 	var groups = [
 		new group("group title1", [
-			new condition("F1", "contains", "aaaa"),
-			new condition("F3", "begins with", "bbbbb")
+			new condition("Abteilung", "contains", "aaaa"),
+			new condition("Status", "begins with", "bbbbb")
 		]),
 		new group("group title2", [
-			new condition("F2", "equals", "cccc")
+			new condition("Zugewiesen an", "equals", "cccc")
 		])
 	];
 	
 	var lists = [
-		new list("list 1", true),
-		new list("list 2", false),
-		new list("list 3", true)
+		new list("Abt. Informatik", true),
+		new list("Abteilung ESA", false),
+		new list("ENSI-Geschäfte", true),
+		new list("Führungssitzung", false),
+		new list("Geschäftsleitung", false),
+		new list("IPIS Begleitgruppe", true),
+		new list("ISA", true),
+		new list("Kadersitzung", true),
+		new list("Kraftwerksleitung", false)
 	];
 	
 	var sortings = [
-		new sorting("F2", 1),
-		new sorting("F3", 2)
+		new sorting("Abteilung", 1),
+		new sorting("OE", 2)
 	];
 		
 	queryService.getSortings = function (callback) {
