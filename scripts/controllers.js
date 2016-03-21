@@ -23,41 +23,120 @@ var path = function(name, source, target, isLast) {
 	}
 }
 
-queryApp.controller('conditionsGetController', ['$scope', '$location', 'queryService', function ($scope, $location, queryService) {
-    $scope.conditions = [];
-	queryService.getSortings(function (data) {
-        $scope.sortings = data;
-        $scope.$apply();
-    });
+queryApp.controller('listsGetController', ['$scope', '$location', 'queryService', '$timeout', function ($scope, $location, queryService, $timeout) {
+	$scope.lists = [];
 	
 	queryService.getLists(function (data) {
         $scope.lists = data;
-        $scope.$apply();
+		$timeout(function() {
+			$scope.$apply();
+		});
     });
 	
-    queryService.getConditions(function (data) {
-        $scope.groups = data;
-        $scope.$apply();
+	$scope.save = function () {
+		queryService.save();
+    };
+}]);
+
+queryApp.controller('sortingsGetController', ['$scope', '$location', 'queryService', '$timeout', function ($scope, $location, queryService, $timeout) {
+	$scope.sortings = [];
+	
+	queryService.getSortings(function (data) {
+        $scope.sortings = data;
+		$timeout(function() {
+			$scope.$apply();
+		});
     });
 	
 	queryService.getFields(function (data) {
         $scope.fields = data;
-        $scope.$apply();
+		$timeout(function() {
+			$scope.$apply();
+		});
+    });
+	
+	$scope.save = function () {
+		queryService.save();
+    };
+}]);
+
+queryApp.controller('viewFieldsGetController', ['$scope', '$location', 'queryService', '$timeout', function ($scope, $location, queryService, $timeout) {
+	$scope.viewFields = [];
+
+	queryService.getViewFields(function (data) {
+        $scope.viewFields = data;
+		$timeout(function() {
+			$scope.$apply();
+		});
+    });
+	
+	$scope.save = function () {
+		queryService.save();
+    };
+}]);
+
+queryApp.controller('previewGetController', ['$scope', '$location', 'queryService', function ($scope, $location, queryService) {
+	
+	$scope.save = function () {
+		queryService.save();
+    };
+}]);
+
+queryApp.controller('conditionsGetController', ['$scope', '$location', 'queryService', '$timeout' , function ($scope, $location, queryService, $timeout) {
+    $scope.conditions = [];
+	$scope.groups = [];
+	$scope.fields = [];
+	$scope.operators = [];
+	
+    queryService.getConditions(function (data) {
+        $scope.groups = data;
+		$timeout(function() {
+			$scope.$apply();
+		});
+    });
+	
+	queryService.getFields(function (data) {
+        $scope.fields = data;
+		$timeout(function() {
+			$scope.$apply();
+		});
     });
 	
 	queryService.getOperators(function (data) {
         $scope.operators = data;
-        $scope.$apply();
+		$timeout(function() {
+			$scope.$apply();
+		});
     });
 	
+	var paths = [];
+	
 	$scope.paths = function () {
-		var paths = [];
-
 		var counter = 0;
+		
 		for(var i = 0; i < $scope.groups.length; i++) {
+			
 			if(i > 0) {
 				var isLast = i == $scope.groups.length-1;
-				paths.push(new path("path" + counter, "group" + (i-1), "group" + i, isLast));
+				
+				var found = false;
+				var pathTemp = new path("path" + counter, "group" + (i-1), "group" + i, isLast)
+				
+				// check here to see if we have added the item already.
+				for(var p = 0; p < paths.length; p++) {
+					var pathCurrent = paths[p];
+					
+					if (pathCurrent.name === pathTemp.name &&
+						pathCurrent.source === pathTemp.source &&
+						pathCurrent.target === pathTemp.target) {
+						found = true;
+						break;
+					}
+				}
+				
+				if(!found) {
+					paths.push(pathTemp);
+				}
 				counter++;
 			}
 			
@@ -66,17 +145,37 @@ queryApp.controller('conditionsGetController', ['$scope', '$location', 'querySer
 			for(var j = 0; j < group.conditions.length; j++) {			
 				if(j > 0) {
 					var isLast = j == group.conditions.length-1;
-					paths.push(new path(
-						"path" + counter,
-						"group" + i + "condition" + (j-1),
-						"group" + i + "condition" + j,
-						isLast));
+					
+					var found = false;
+					var pathTemp = new path(
+							"path" + counter,
+							"group" + i + "condition" + (j-1),
+							"group" + i + "condition" + j,
+							isLast);
+					
+					// check here to see if we have added the item already.
+					for(var p = 0; p < paths.length; p++) {
+						var pathCurrent = paths[p];
+						
+						if (pathCurrent.name === pathTemp.name &&
+							pathCurrent.source === pathTemp.source &&
+							pathCurrent.target === pathTemp.target) {
+							found = true;
+							break;
+						}
+					}
+					
+					if(!found) {
+						paths.push(pathTemp)
+					}
+					
 					counter++;
 				}
 			}
 		}
 		return paths;
 	};
+	
 	
 	$scope.drawPaths = function(){
 		var paths = $scope.paths();
@@ -108,22 +207,13 @@ queryApp.controller('conditionsGetController', ['$scope', '$location', 'querySer
 	$scope.save = function () {
 		queryService.save();
     };
-	/*
-    $scope.artistDetail = function (index) {
-        $location.path('/artists/' + index);
-    };
-
-    $scope.artistAdd = function () {
-        $location.path('/artists/add');
-    };
-	*/
 }]);
 
 app.controller('addController', ['$scope', '$location', 'shptService', function ($scope, $location, shptService) {
     $scope.genres = [];
     shptService.getGenres(function (data) {
         $scope.genres = data;
-        $scope.$apply();
+        //$scope.$apply();
     });
 
     $scope.save = function () {
@@ -145,13 +235,13 @@ app.controller('editController', ['$scope', '$location', '$routeParams', 'shptSe
     $scope.genres = [];
     shptService.getGenres(function (data) {
         $scope.genres = data;
-        $scope.$apply();
+        //$scope.$apply();
     });
 
     $scope.Item = null;
     shptService.getArtists(function (data) {
         $scope.Item = data[parseInt($routeParams.index)];
-        $scope.$apply();
+        //$scope.$apply();
     });
 
     $scope.save = function () {

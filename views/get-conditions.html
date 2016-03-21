@@ -1,4 +1,5 @@
 ﻿
+
 <div id="svgContainer">
 	<svg id="svgPaths" width="0" height="0" >
 		<path data-ng-repeat="path in paths()"
@@ -7,14 +8,17 @@
 			stroke="#000" 
 			fill="none" 
 			stroke-width="12px"; />
+	
 	</svg>
 </div>
+
+
 <div data-ng-repeat="group in groups">
 	<div id="group{{$index}}" class="group" ng-class="{'last': $last}">
 		<table class="table header-group">
 			<tr>
 				<td>
-					<input type="text" class="form-control" ng-model="group.title" value="{{group.title}}"></input>
+					<input type="text" class="form-control" ng-model="group.title"></input>
 				</td>
 				<td>
 					<div class="condition-buttons">
@@ -23,6 +27,7 @@
 				</td>
 			</tr>
 		</table>
+		
 		<div data-ng-repeat="condition in group.conditions">
 			<div id="group{{$parent.$index}}condition{{$index}}" class="condition panel" ng-class="{'last': $last}" >
 				<table class="table body-group">
@@ -61,10 +66,12 @@
 				</div>
 			</div>
 		</div>
+		
 		<div ng-if="!$last" id="group{{$index}}op" class="op-offset operation-group">
 			<select><option>AND</option><option>OR</option></select>
 		</div>
 	</div>
+	
 	<div ng-if="$last">
 		<div class="group-plus">
 			<div class="text-center">
@@ -72,6 +79,7 @@
 			</div>
 		</div>
 	</div>
+	
 </div>
 <div ng-bind="drawPaths()"></div>
 <div>

@@ -45,6 +45,9 @@ function drawPath(svg, path, startX, startY, endX, endY) {
 function connectElements(svg, path, startElem, endElem) {
     var svgContainer= $("#svgContainer");
 	
+	if(startElem.length === 0) {
+		return;
+	}
 
     // if first element is lower than the second, swap!
     if(startElem.offset().top > endElem.offset().top){
@@ -83,8 +86,8 @@ function connectElements(svg, path, startElem, endElem) {
 	connectedOperator.css('top', endY + topOffsetOperator);
 }
 
-function connect(param){
-	console.log(param);
+function connect(params){
+	console.log(params);
 }
 
 function connectAll() {

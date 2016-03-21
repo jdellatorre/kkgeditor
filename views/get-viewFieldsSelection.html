@@ -2,12 +2,12 @@
 
 
 	<table class="table table-striped">
-		<tr data-ng-repeat="list in lists" >
+		<tr data-ng-repeat="viewField in viewFields" >
 			<td width="30px">
-				<input type="checkbox" ng-checked="list.selected" ng-model="list.selected"></input>
+				<input type="checkbox" ng-checked="viewField.selected" ng-model="viewField.selected" ></input>
 			</td>
 			<td>
-				{{list.title}}
+				{{viewField.title}}
 			</td>
 		</tr>
 	</table>

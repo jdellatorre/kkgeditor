@@ -19,13 +19,16 @@ var queryApp = angular.module('queryApp', ['ngRoute']).config(function ($routePr
         controller: 'conditionsGetController'
 	 }).when('/listSelection', {
         templateUrl: 'views/get-listSelection.html',
-        controller: 'conditionsGetController'
+        controller: 'listsGetController'
+	 }).when('/getViewFields', {
+        templateUrl: 'views/get-viewFieldsSelection.html',
+        controller: 'viewFieldsGetController'
 	 }).when('/sorting', {
         templateUrl: 'views/get-sorting.html',
-        controller: 'conditionsGetController'
+        controller: 'sortingsGetController'
 	}).when('/preview', {
         templateUrl: 'views/get-preview.html',
-        controller: 'conditionsGetController'
+        controller: 'previewGetController'
     }).otherwise({
         redirectTo: '/listSelection'
     });
@@ -49,6 +52,14 @@ var condition = function(name, operator, value) {
 		fieldname: name,
 		operator: operator,
 		value: value
+	}
+}
+
+var viewField = function(title, internalName, selected) {
+	return {
+		title: title,
+		internalName: internalName,
+		selected: selected
 	}
 }
 
@@ -84,6 +95,18 @@ var sorting = function(name, order) {
 queryApp.factory('queryService', ['$rootScope', '$http',
   function ($rootScope, $http) {
     var queryService = {};
+	
+	var viewFields = [
+		new viewField("Abteilung", "AbteilungIntern", true),
+		new viewField("OE", "OeIntern", true),
+		new viewField("Anfangsdatum", "AnfangsdatumIntern", false),
+		new viewField("Faellig am", "FaelligAmIntern", false),
+		new viewField("Status", "StatusIntern", false),
+		new viewField("Titel", "TitelIntern", false),
+		new viewField("U. Sachbearbeiter", "USachbearbeiterIntern", false),
+		new viewField("Vertraulich", "VertraulichIntern", false),
+		new viewField("Zugewiesen an", "ZugewiesenAnIntern", false)
+	];
 
 	var fields = [
 		new field("Abteilung", "Field1 value"),
@@ -145,6 +168,10 @@ queryApp.factory('queryService', ['$rootScope', '$http',
 	queryService.getOperators = function (callback) {
 		callback($rootScope.data = operators);
 	};
+	
+	queryService.getViewFields = function (callback) {
+		callback($rootScope.data = viewFields);
+	};
 		  
       //artist operations
 	queryService.getConditions = function (callback) {
@@ -187,8 +214,17 @@ queryApp.factory('queryService', ['$rootScope', '$http',
       };
 	  
 	queryService.save = function() {
+		//var json = JSON.stringify(lists);
+		//console.log(json);
+		
 		var json = JSON.stringify(groups);
 		console.log(json);
+		
+		//var json = JSON.stringify(operators);
+		//console.log(json);
+		
+		//var json = JSON.stringify(viewFields);
+		//console.log(json);
 	};
 	  
 	  return queryService;
